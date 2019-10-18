@@ -37,6 +37,8 @@ def scrape():
     scraped_data['mars_headline'] = mars_headline
     scraped_data['mars_body'] = mars_body
 
+    browser.quit()
+
 
     #visit site 2 retrieving the feature image
 
@@ -55,6 +57,7 @@ def scrape():
 
     scraped_data['feature_img_path'] = feature_img_path
 
+    browser.quit()
 
     
 
@@ -73,15 +76,13 @@ def scrape():
 
     scraped_data['mars_weather'] = mars_weather
 
+    browser.quit()
 
 #visit site 4 retrieving the mars fact table
 
 
     facts_url = 'https://space-facts.com/mars/'
 
-    # facts_df = pd.read_html(facts_url)[1]
-    # mars_df = facts_df
-    # mars_df.columns = ['Property', 'Value']
     time.sleep(1)
     table = pd.read_html(facts_url)
     table[1]
@@ -114,6 +115,7 @@ def scrape():
 
     scraped_data['hemisphere_list'] = hemisphere_list
 
+    browser.quit()
 
     return scraped_data
 

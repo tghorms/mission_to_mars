@@ -15,9 +15,8 @@ collection = db.mars_facts
 
 @app.route('/scrape')
 def scrape():
-    #db.collection.remove()
+    
     mars = scrape_mars.scrape()
-    #mars.update({}, mars, upsert= True)
     db.mars_facts.update({}, mars, upsert=True)
     return redirect("/", code=302)
 
