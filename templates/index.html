@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Templates 101</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron text-center">
+      <h1>Misson to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape Data</a></p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Latest Mar News</h1>
+        <hr>
+        {% for data in mars%}
+        <h2>{{data.mars_headline}}</h2>
+        <p>{{data.mars_body}}</p>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <!--Inseter featured mars image and title-->
+          <h1>Featured Mars Image</h1>
+          <img src="{{data.feature_img_path}}" alt="featured image" style="width:80%;">
+        </div>
+        <div class="col-md-4">
+          <!--Insert mars weather-->
+          <ul>
+            <h3 class="weather_box">Current Mars Weather</h3>
+            {{data.mars_weather}}
+          </ul>
+          <ul>
+            <h3>Mars Facts</h3>
+            {{data.mars_df|safe}}
+            <a href="{{data.mars_df}}"></a>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <h3 align="center">Mars Hemispheres</h3>
+        <hr>
+        <div class="col-md-6">
+          {% for hemisphere in data.hemisphere_list[0:2] %}
+
+          <img src="{{hemisphere['img_url']}}" alt="hemisphere" style="width: 80%;">
+          <div class="caption" style="font-weight: bold;">
+            {{hemisphere['title']}}
+          </div>
+          {% endfor %}
+        </div>
+        <div class="col-md-6">
+          {% for hemisphere in data.hemisphere_list[2:4] %}
+
+          <img src="{{hemisphere['img_url']}}" alt="hemisphere" style="width: 80%;">
+          <div class="caption" style="font-weight: bold;">
+            {{hemisphere['title']}}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+</body>
+
+</html>
